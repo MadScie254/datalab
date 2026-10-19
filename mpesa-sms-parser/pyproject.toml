@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mpesa-sms-parser"
+version = "0.1.0"
+description = "Parse Safaricom M-PESA confirmation SMS into CSV/JSON with a spending summary and balance check"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Daniel Wanjala Machimbo" }]
+license = { text = "MIT" }
+
+[project.scripts]
+mpesa-parse = "mpesa_parser.cli:main"
+
+[tool.setuptools]
+packages = ["mpesa_parser"]
