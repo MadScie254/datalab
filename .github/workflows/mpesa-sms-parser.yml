@@ -1,0 +1,24 @@
+name: mpesa-sms-parser tests
+
+on:
+  push:
+    paths: ["mpesa-sms-parser/**", ".github/workflows/mpesa-sms-parser.yml"]
+  pull_request:
+    paths: ["mpesa-sms-parser/**", ".github/workflows/mpesa-sms-parser.yml"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.11", "3.13"]
+    defaults:
+      run:
+        working-directory: mpesa-sms-parser
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m unittest discover -s tests -t . -v
+      - run: python -m mpesa_parser samples/messages.txt
